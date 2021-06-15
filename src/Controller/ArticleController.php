@@ -17,4 +17,13 @@ class ArticleController extends AbstractController
     {
         return new Response ("les biens");
     }
+    /**
+     * @Route ("/article/{id}/{nom}",name="Article_test")
+     * @return Response
+     */
+public function test($id,$nom)
+{
+ var_dump($nom);
+    return new Response ('mon id='.$id.'mon nom='.$nom);
+}
 }
