@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -23,7 +24,13 @@ class ArticleController extends AbstractController
      */
 public function test($id,$nom)
 {
- var_dump($nom);
+
     return new Response ('mon id='.$id.'mon nom='.$nom);
 }
+public  function inserer( )
+{
+
+}
+
+
 }
