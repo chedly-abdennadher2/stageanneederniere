@@ -27,10 +27,6 @@ public function test($id,$nom)
 
     return new Response ('mon id='.$id.'mon nom='.$nom);
 }
-public  function inserer( )
-{
-
-}
 
 
 }

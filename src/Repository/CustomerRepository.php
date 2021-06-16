@@ -47,4 +47,12 @@ class CustomerRepository extends ServiceEntityRepository
         ;
     }
     */
+public function findAllGreaterId( int $id) :array
+{
+   $manager=$this->getEntityManager();
+   $query=$manager->createQuery('SELECT c from App\Entity\Customer c where c.id > :id ORDER BY c.id ASC')
+       ->setParameter('id',$id);
+return $query->getResult();
 }
+}
+

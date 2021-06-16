@@ -7,3 +7,6 @@ home  :
 tableau  :
     path: /tableau
     controller: App\Controller\HomeController::gotableau
+customer  :
+    path: /client
+    controller: App\Controller\HomeController::gocustomer

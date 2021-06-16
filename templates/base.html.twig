@@ -52,6 +52,10 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" href="{{path('Article_index')}}">Disabled</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="{{path('customer')}}">Disabled</a>
+                </li>
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -59,6 +63,16 @@
             </form>
         </div>
     </nav>
+<a href="{{ path('createcustomer') }} ">  essayer d'inserer une entité </a><br>
+<br>    <a href="{{ path('selectcustomerid',{id:'2'}) }} ">  essayer de rechercher une entité  par id</a>
+  <br>
+    <br><a href="{{ path('selectcustomernom',{nom:'ali'}) }} ">  essayer de rechercher une entité  par nom</a>
+    <br>    <a href="{{ path('mettreajour',{id:'2'}) }} ">  essayer de mettreajour une entité</a>
+    <br>    <a href="{{ path('supprimer',{id:'2'}) }} ">  essayer de supprimer une entité</a>
+    <br><a href="{{ path('selectcustomeridsupx',{id:'2'}) }} ">  essayer de rechercher des entité id>2 </a>
+
+
+
 
         {% block body %}
 

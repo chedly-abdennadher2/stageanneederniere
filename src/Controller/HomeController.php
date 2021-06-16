@@ -17,5 +17,11 @@ class HomeController extends AbstractController
     {
         return new Response ($this->render('pages/home.html.twig'));
     }
+public function gocustomer( ):Response
+{
+    return new Response ($this->render('customer/index.html.twig'));
 
 }
+
+}
+
