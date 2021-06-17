@@ -64,13 +64,31 @@ unset ($repupdate);
  unset($repupdate);
 
     $c = $rep->find($id);
-    var_dump($c);
-    return $this->render('customer/index.html.twig',
+
+    return $this->render('customer/contenu.html.twig',
         [
         'element' => $c,
     ]);
 
 }
+    /**
+     *
+
+     * @Route("/customer/consultertous", name="selectionnertout")
+      */
+    public function recherchertous()
+    {$this->initialiser($rep,$manager,$repupdate);
+        unset($manager);
+        unset($repupdate);
+
+        $c = $rep->findAll();
+        return $this->render('customer/contenu.html.twig',
+            [
+                'elements' => $c,
+            ]);
+
+    }
+
     /**
      *
      * @Route("/customer/consulterparnom/{nom}", name="selectcustomernom")
@@ -85,10 +103,9 @@ public function rechercherparnom($nom)
     $doct = $this->getDoctrine();
     $rep = $doct->getRepository(Customer::class);
     $c = $rep->findBy(['nom'=> $nom] );
-    var_dump($c);
-    return $this->render('customer/index.html.twig',
+    return $this->render('customer/contenu.html.twig',
         [
-            'controller_name' => 'CustomerController',
+            'elements' => $c,
         ]);
 
 }
