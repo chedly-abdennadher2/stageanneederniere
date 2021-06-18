@@ -58,7 +58,7 @@ unset ($repupdate);
      * @Route("/customer/consulterparid/{id}", name="selectcustomerid")
      */
 
-    public function rechercherparid(int $id)
+    public function rechercherparid(int $id, Customer &$c)
 {$this->initialiser($rep,$manager,$repupdate);
  unset($manager);
  unset($repupdate);
@@ -159,7 +159,7 @@ return $this->render('customer/index.html.twig',
     ]);
 
 }
-
+#fonction expérimentale inutile pour l'application
 
     /**
      *
@@ -169,6 +169,7 @@ return $this->render('customer/index.html.twig',
     {
         $c =$repository->findAllGreaterId($id);
         var_dump($c);
+
         return $this->render('customer/index.html.twig',
             [
                 'controller_name' => 'CustomerController',

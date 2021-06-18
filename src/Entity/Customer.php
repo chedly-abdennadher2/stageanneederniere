@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
@@ -19,21 +20,27 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
+    * @Assert\NotBlank
      */
+
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
      */
+
     private $date_naiss;
 
     /**
      * @ORM\Column(type="string", length=2)
+     * @Assert\NotBlank
      */
     private $adresse;
  public  function __construct()
