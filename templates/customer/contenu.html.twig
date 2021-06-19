@@ -43,9 +43,12 @@
 
           {% endfor %}
             </table>
-<button>            <a href="{{ path('formulaireajouter')  }} "> vas y formulaire d'ajout </a>
-</button>
-        </div>
+            {{ knp_pagination_render(elements) }}
 
+            <button>            <a href="{{ path('formulaireajouter')  }} "> vas y formulaire d'ajout </a>
+</button><br>
+            <a href="{{  path('search')}}"> search</a>
+
+        </div>
     </div>
 {% endblock %}

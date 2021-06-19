@@ -10,3 +10,6 @@ tableau  :
 customer  :
     path: /client
     controller: App\Controller\HomeController::gocustomer
+Search:
+    path: /search
+    controller: App\Controller\SearchController:search

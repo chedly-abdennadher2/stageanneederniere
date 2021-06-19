@@ -21,6 +21,11 @@ class Customer
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
     * @Assert\NotBlank
+     * @assert\Regex (
+     *     pattern     = "/^[A-Za-z]+$/i",
+     *
+     * )
+     * @assert\Length(min=5,max=30)
      */
 
     private $nom;
@@ -39,14 +44,19 @@ class Customer
     private $date_naiss;
 
     /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank
      */
     private $adresse;
- public  function __construct()
- {
 
- }
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $prixtotal;
+ public  function __construct()
+          {
+         
+          }
 
 
     public function getId(): ?int
@@ -98,6 +108,18 @@ class Customer
     public function setAdresse(string $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getPrixtotal(): ?float
+    {
+        return $this->prixtotal;
+    }
+
+    public function setPrixtotal(?float $prixtotal): self
+    {
+        $this->prixtotal = $prixtotal;
 
         return $this;
     }

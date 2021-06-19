@@ -13,7 +13,8 @@ use Twig\Environment;
 use Doctrine\ORM\EntityManagerInterface;
 use function foo\func;
 use App\Repository\CustomerRepository;
-
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 class CustomerController extends AbstractController
 {
 
@@ -76,15 +77,21 @@ unset ($repupdate);
 
      * @Route("/customer/consultertous", name="selectionnertout")
       */
-    public function recherchertous()
+    public function recherchertous(Request $request, PaginatorInterface $paginator)
     {$this->initialiser($rep,$manager,$repupdate);
         unset($manager);
         unset($repupdate);
 
         $c = $rep->findAll();
+        $resultat = $paginator->paginate(
+            $c, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            6 // Nombre de résultats par page
+        );
+
         return $this->render('customer/contenu.html.twig',
             [
-                'elements' => $c,
+                'elements' => $resultat,
             ]);
 
     }
@@ -176,5 +183,6 @@ return $this->render('customer/index.html.twig',
             ]);
 
     }
+
 
 }

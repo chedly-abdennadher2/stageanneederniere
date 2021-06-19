@@ -22,6 +22,11 @@ public function gocustomer( ):Response
     return new Response ($this->render('customer/index.html.twig'));
 
 }
+public function gosearch()
+{
+    return new Response ($this->render('customer/search.html.twig'));
 
+
+}
 }
 
