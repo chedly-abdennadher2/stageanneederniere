@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CustomerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -53,10 +55,10 @@ class Customer
      * @ORM\Column(type="float", nullable=true)
      */
     private $prixtotal;
- public  function __construct()
-          {
-         
-          }
+
+ public function __construct()
+             {
+             }
 
 
     public function getId(): ?int
@@ -123,4 +125,6 @@ class Customer
 
         return $this;
     }
+
+
 }

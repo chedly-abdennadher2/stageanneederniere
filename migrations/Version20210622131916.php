@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210619112446 extends AbstractMigration
+final class Version20210622131916 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,8 @@ final class Version20210619112446 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE customer ADD prixtotal DOUBLE PRECISION DEFAULT NULL, CHANGE adresse adresse VARCHAR(2) NOT NULL');
+        $this->addSql('ALTER TABLE produit ADD CONSTRAINT FK_29A5EC273ADB05F1 FOREIGN KEY (options_id) REFERENCES `option` (id)');
+        $this->addSql('ALTER TABLE produit RENAME INDEX options_id TO IDX_29A5EC273ADB05F1');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +31,7 @@ final class Version20210619112446 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE customer DROP prixtotal, CHANGE adresse adresse VARCHAR(30) CHARACTER SET latin1 NOT NULL COLLATE `latin1_swedish_ci`');
+        $this->addSql('ALTER TABLE produit DROP FOREIGN KEY FK_29A5EC273ADB05F1');
+        $this->addSql('ALTER TABLE produit RENAME INDEX idx_29a5ec273adb05f1 TO options_id');
     }
 }
