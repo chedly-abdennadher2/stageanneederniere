@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\CustomerFind;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,5 +24,9 @@ class RechercheType extends AbstractType
             'method'=> 'get',
             'crsf_protection' =>false
             ]);
+    }
+    public function getBlockPrefix()
+    {
+    return '';
     }
 }

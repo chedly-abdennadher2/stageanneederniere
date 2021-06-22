@@ -18,6 +18,8 @@
                     <th scope="col">prenom</th>
                     <th scope="col">date_naissance</th>
                     <th scope="col">adresse</th>
+                    <th scope="col">prixtotal</th>
+
                     <th>action </th>
                 </tr>
 
@@ -28,6 +30,7 @@
                     <td>{{ element.prenom}}</td>
                     <td>{{ element.dateNaiss|date('Y-m-d') }}</td>
                       <td>{{ element.adresse }}</td>
+                      <td>{{ element.prixtotal }}</td>
 
                     <td>
                        <button>
@@ -43,6 +46,7 @@
 
           {% endfor %}
             </table>
+
             {{ knp_pagination_render(elements) }}
 
             <button>            <a href="{{ path('formulaireajouter')  }} "> vas y formulaire d'ajout </a>
