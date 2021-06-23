@@ -59,9 +59,8 @@ public function index (Request &$request) :Response
 
     public function search( Request $request,PaginatorInterface $paginator): Response
     {
+
         $this->initialiser($rep, $manager, $repupdate);
-
-
             $prix = $request->get('prix');
             $c =new Customer();
             $c = $rep->findBy(['prixtotal' => $prix]);

@@ -32,6 +32,7 @@ class Produit
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $tags;
 

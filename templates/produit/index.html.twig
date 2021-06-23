@@ -12,6 +12,8 @@
                 <th>Type</th>
                 <th> option id</th>
                 <th> option nom</th>
+                <th> tag.id</th>
+                <th> tag.name</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,10 +24,21 @@
                 <td>{{ produit.type }}</td>
                 <td>{{ produit.options.id }}</td>
                 <td>{{ produit.options.name }}</td>
+                {% for tag in produit.tags %}
+                <td>  {{ tag.id }}    </td>
+                <td>  {{ tag.name }}    </td>
+                {% else %}
+                        <td>no records found</td>
+                    <td>no records found</td>
+
+                {% endfor %}
 
                 <td>
                     <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
                     <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
+                    <a href="{{ path('search_produit') }}">search</a>
+
+
                 </td>
             </tr>
         {% else %}
