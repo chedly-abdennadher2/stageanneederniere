@@ -15,7 +15,7 @@ class SearchproduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('option',EntityType::class,
+            ->add('options',EntityType::class,
                 [
 
                     'required'=>false,

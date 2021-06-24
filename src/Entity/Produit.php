@@ -24,11 +24,6 @@ class Produit
      */
     private $type;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Option::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $options;
 
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="produits")
@@ -36,10 +31,16 @@ class Produit
      */
     private $tags;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Option::class, mappedBy="Opt")
+     */
+    private $options;
+
 
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->options = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,17 +60,7 @@ class Produit
         return $this;
     }
 
-    public function getOptions(): ?Option
-    {
-        return $this->options;
-    }
 
-    public function setOptions(?Option $options): self
-    {
-        $this->options = $options;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Tag[]
@@ -91,6 +82,32 @@ class Produit
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+    public function getOptions(): Collection
+    {
+        return $this->options;
+    }
+
+    public function addOption(option $option): self
+    {
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
+            $option->setOpt($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOption(option $option): self
+    {
+        if ($this->options->removeElement($option)) {
+            // set the owning side to null (unless already changed)
+            if ($option->getOpt() === $this) {
+                $option->setOpt(null);
+            }
+        }
 
         return $this;
     }

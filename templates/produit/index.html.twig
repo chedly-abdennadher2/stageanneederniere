@@ -3,44 +3,60 @@
 {% block title %}Produit index{% endblock %}
 
 {% block body %}
+
     <h1>Produit index</h1>
+    <a href="{{ path('search_produit') }}">search</a>
 
     <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type</th>
-                <th> option id</th>
-                <th> option nom</th>
-                <th> tag.id</th>
-                <th> tag.name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
         <tbody>
         {% for produit in produits %}
+
+            <tr>
+                <th>IdProduit </th>
+                <th>Type</th>
+            </tr>
             <tr>
                 <td>{{ produit.id }}</td>
                 <td>{{ produit.type }}</td>
-                <td>{{ produit.options.id }}</td>
-                <td>{{ produit.options.name }}</td>
+            </tr>
+            {% if produit.options  %}
+
+            {% for option in produit.options %}
+                <tr>
+                    <th> option id</th>
+                    <th> option nom</th>
+                </tr>
+                <tr>
+
+                <td>{{ option.id }}</td>
+                <td>{{ option.name }}</td>
+                </tr>
+
+            {% endfor %}
+
+           {%endif %}
+            {% if produit.tags %}
                 {% for tag in produit.tags %}
-                <td>  {{ tag.id }}    </td>
+                    <tr>
+                        <th> tag.id</th>
+                        <th> tag.name</th>
+                    </tr>
+                    <tr>
+
+                    <td>  {{ tag.id }}    </td>
                 <td>  {{ tag.name }}    </td>
-                {% else %}
-                        <td>no records found</td>
-                    <td>no records found</td>
+                    </tr>
 
                 {% endfor %}
-
+            {% endif %}
+            <tr>
                 <td>
-                    <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
-                    <a href="{{ path('search_produit') }}">search</a>
+                    <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a> </td>
+              <td>
+                    <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a> </td>
 
-
-                </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="3">no records found</td>

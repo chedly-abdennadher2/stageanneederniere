@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Option;
 use App\Entity\Produit;
 use App\Entity\SearchProduit;
 use App\Form\SearchproduitType;
@@ -35,11 +36,13 @@ use App\Repository\ProduitRepository;
 class SearchProduitController extends AbstractController
 {
 
-    public function initialiser(&$rep,&$manager)
+    public function initialiser(&$rep,&$manager,&$repoption)
     {
         $manager = $this->getDoctrine()->getManager();
         $doct = $this->getDoctrine();
         $rep = $doct->getRepository(Produit::class);
+        $repoption = $doct->getRepository(Option::class);
+
     }
 
 
@@ -68,17 +71,14 @@ class SearchProduitController extends AbstractController
     public function search(Request $request,PaginatorInterface $paginator)
     {
 
-        $this->initialiser($rep, $manager);
+        $this->initialiser($rep, $manager,$repoption);
         $request=   $request->get('searchproduit');
-        $tab=    $request['option'];
-        $search =new SearchProduit ();
+        $tab=    $request['options'];
         $opt=new ArrayCollection();
-
         $i=0;
+        $search =new SearchProduit();
         foreach ($tab as $clef=>$value)
-
         {
-
             switch ($value)
             {
                 case 1:
@@ -88,7 +88,6 @@ class SearchProduitController extends AbstractController
                     }
 
                     case 2:
-
                         {
                             $opt[$i]='armé';
                             break;
@@ -98,38 +97,32 @@ class SearchProduitController extends AbstractController
                                 $opt[$i]='abc';
                                 break;
                             }
-
             }
 
             $i++;
         }
         foreach ($opt as $clef=>$value)
         {
-            $search->addOption($value);
+            $search->addOptions($value);
         }
         $options=$search->getOptions();
         dump($options);
-        $p=new ArrayCollection();
-       $p = $rep->findBy(['options'=> $options] );
-        dump($p);
-       die;
-       /*
-        $resultat = $paginator->paginate(
-            $c, // Requête contenant les données à paginer (ici nos articles)
-            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            6 // Nombre de résultats par page
-        );
+        $i=0;
+      foreach ($options as $clef=>$value)
+      {
+          $tmp[$i] =  $options[$i];
+          $i++;
+      }
+       $result= $rep->FindByOptions($tmp);
+       dump($result);
 
 
-        return $this->render('search/resultat.html.twig',
+        return $this->render('produit/index.html.twig',
             [
-                'elements' => $resultat,
+                'produits' => $result,
             ]);
-*/
 
-        return $this->render('pages/index.html.twig', [
-            'controller_name' => 'SearchProduitController',
-        ]);
+
 
     }
 

@@ -26,6 +26,11 @@ class Option
      */
     private $Name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="options")
+     */
+    private $Opt;
+
 
     public function __construct()
     {
@@ -46,6 +51,18 @@ class Option
     public function setName(string $Name): self
     {
         $this->Name = $Name;
+
+        return $this;
+    }
+
+    public function getOpt(): ?Produit
+    {
+        return $this->Opt;
+    }
+
+    public function setOpt(?Produit $Opt): self
+    {
+        $this->Opt = $Opt;
 
         return $this;
     }

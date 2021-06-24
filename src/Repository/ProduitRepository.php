@@ -8,6 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use mysql_xdevapi\Collection;
 
 /**
  * @method Produit|null find($id, $lockMode = null, $lockVersion = null)
@@ -51,5 +52,20 @@ class ProduitRepository extends ServiceEntityRepository
     }
     */
 
+public  function FindByOptions($cles)
+{
+dump ($cles);
+    $manager=$this->getEntityManager();
+        $query=$this->createQueryBuilder('p');
+        foreach ($cles as $clef=>$value)
+        {
+            $query->andWhere(":option$clef MEMBER OF p.options")
+            ->setParameter("option$clef",$clef+1);
+        }
 
+    dump($query->getQuery());
+
+    return $query->getQuery()->getResult();
+
+}
 }

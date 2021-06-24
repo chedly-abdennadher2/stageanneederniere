@@ -19,9 +19,9 @@ class ProduitType extends AbstractType
             ->add('type')
             ->add('options',EntityType::class,
             [
-                'class'=>option::class,
+                'class'=>Option::class,
                 'choice_label'=>'name',
-
+                 'multiple'=>true,
             ]
             )
 

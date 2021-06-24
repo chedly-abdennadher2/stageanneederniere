@@ -51,17 +51,17 @@ class OptionController extends AbstractController
     /**
      * @Route("/{id}", name="option_show", methods={"GET"})
      */
-    public function show(Option $option): Response
+    public function show(Option $opt): Response
     {
         return $this->render('option/show.html.twig', [
-            'option' => $option,
+            'options' => $opt,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="option_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Option $option): Response
+    public function edit(Request $request, Option $p): Response
     {
         $form = $this->createForm(OptionType::class, $option);
         $form->handleRequest($request);
@@ -73,7 +73,7 @@ class OptionController extends AbstractController
         }
 
         return $this->render('option/edit.html.twig', [
-            'option' => $option,
+            'options' => $p,
             'form' => $form->createView(),
         ]);
     }
@@ -81,11 +81,11 @@ class OptionController extends AbstractController
     /**
      * @Route("/{id}", name="option_delete", methods={"POST"})
      */
-    public function delete(Request $request, Option $option): Response
+    public function delete(Request $request, Option $p): Response
     {
         if ($this->isCsrfTokenValid('delete'.$option->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($option);
+            $entityManager->remove($p);
             $entityManager->flush();
         }
 

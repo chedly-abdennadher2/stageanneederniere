@@ -17,7 +17,7 @@ class SearchProduit
     {
         $this->options = new ArrayCollection();
     }
-    public function addOption(string $option): self
+    public function addOptions(string $option): self
     {
         if (!$this->options->contains($option)) {
             $this->options[] = $option;
