@@ -8,6 +8,7 @@ Use App\Entity\Tag;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,7 +33,12 @@ class ProduitType extends AbstractType
                     'multiple'=>true
                 ]
             )
+           ->add('imageFile',Filetype::class,
+           [
+               'required'=>false,
+           ]
 
+           )
 
         ;
     }

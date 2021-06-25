@@ -21,7 +21,15 @@ class ProduitRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Produit::class);
+        $tableName = $this->getClassMetadata()->getTableName();
+        $connection = $this->getEntityManager()->getConnection();
+        try {
+            $connection->exec("ALTER TABLE " . $tableName . " AUTO_INCREMENT = 1;");
+        } catch (Exception $e) {
+        }
+
     }
+
 
     // /**
     //  * @return Produit[] Returns an array of Produit objects

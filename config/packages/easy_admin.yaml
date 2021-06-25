@@ -1,0 +1,13 @@
+easy_admin:
+  entities:
+    Produit:
+      class: App\Entity\Produit
+      list:
+
+        fields:
+          - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
+
+      show:
+        fields:
+          - { property: 'image', type: 'image', base_path: '%app.path.product_images%'}
+

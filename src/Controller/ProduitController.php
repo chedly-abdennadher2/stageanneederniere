@@ -70,7 +70,8 @@ class ProduitController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('produit_index');
+            return $this->render('produit/index.html.twig');
+
         }
 
         return $this->render('produit/edit.html.twig', [
