@@ -1,9 +1,10 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Produit index{% endblock %}
 
 {% block body %}
-{{ dump(produits) }}
+    {{ dump(produits) }}
     <h1>Produit index</h1>
     <a href="{{ path('search_produit') }}">search</a>
 
@@ -20,29 +21,28 @@
                 <td>{{ produit.id }}</td>
                 <td>{{ produit.type }}</td>
                 <td>
-                {% if produit.image %}
-                  <img src=" {{ vich_uploader_asset(produit,'imageFile') }}" width="100" height="100"/>
-
-                {% endif %}
+                    {% if produit.image %}
+                        <img src=" {{ vich_uploader_asset(produit,'imageFile')|imagine_filter('my_thumb') }}" /><img src=" {{ vich_uploader_asset(produit,'imageFile')|imagine_filter('my_thumb') }}" />
+                    {% endif %}
 
                 </td>
             </tr>
             {% if produit.options  %}
 
-            {% for option in produit.options %}
-                <tr>
-                    <th> option id</th>
-                    <th> option nom</th>
-                </tr>
-                <tr>
+                {% for option in produit.options %}
+                    <tr>
+                        <th> option id</th>
+                        <th> option nom</th>
+                    </tr>
+                    <tr>
 
-                <td>{{ option.id }}</td>
-                <td>{{ option.name }}</td>
-                </tr>
+                        <td>{{ option.id }}</td>
+                        <td>{{ option.name }}</td>
+                    </tr>
 
-            {% endfor %}
+                {% endfor %}
 
-           {%endif %}
+            {%endif %}
             {% if produit.tags %}
                 {% for tag in produit.tags %}
                     <tr>
@@ -51,8 +51,8 @@
                     </tr>
                     <tr>
 
-                    <td>  {{ tag.id }}    </td>
-                <td>  {{ tag.name }}    </td>
+                        <td>  {{ tag.id }}    </td>
+                        <td>  {{ tag.name }}    </td>
                     </tr>
 
                 {% endfor %}
@@ -60,7 +60,7 @@
             <tr>
                 <td>
                     <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a> </td>
-              <td>
+                <td>
                     <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a> </td>
 
             </tr>
@@ -75,3 +75,4 @@
 
     <a href="{{ path('produit_new') }}">Create new</a>
 {% endblock %}
+

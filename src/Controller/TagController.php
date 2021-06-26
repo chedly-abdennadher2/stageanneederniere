@@ -92,3 +92,4 @@ class TagController extends AbstractController
         return $this->redirectToRoute('tag_index');
     }
 }
+

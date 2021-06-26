@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
  * @Vich\Uploadable
@@ -147,10 +149,8 @@ class Produit
     // It is required that at least one field changes if you are using Doctrine,
     // otherwise the event listeners won't be called and the file is lost
     if ($this->image) {
-        dump($this->image);
         // if 'updatedAt' is not defined in your entity, use another property
         $this->updated_at = new DateTime('now');
-    dump($this->updated_at);
     }
 
 }
