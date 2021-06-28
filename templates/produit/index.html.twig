@@ -4,7 +4,7 @@
 {% block title %}Produit index{% endblock %}
 
 {% block body %}
-    {{ dump(produits) }}
+
     <h1>Produit index</h1>
     <a href="{{ path('search_produit') }}">search</a>
 
@@ -22,7 +22,7 @@
                 <td>{{ produit.type }}</td>
                 <td>
                     {% if produit.image %}
-                        <img src=" {{ vich_uploader_asset(produit,'imageFile')|imagine_filter('my_thumb') }}" /><img src=" {{ vich_uploader_asset(produit,'imageFile')|imagine_filter('my_thumb') }}" />
+                        <img src=" {{ vich_uploader_asset(produit,'imageFile')|imagine_filter('my_thumb') }}" />
                     {% endif %}
 
                 </td>

@@ -110,12 +110,22 @@ class Produit
     {
         return $this->options;
     }
+    public  function  addNewOption(option $option)
+    {
+        $option->setOpt($this);
+
+        $this->options[] = $option;
+
+    }
 
     public function addOption(option $option): self
     {
+
         if (!$this->options->contains($option)) {
-            $this->options[] = $option;
+
             $option->setOpt($this);
+
+            $this->options[] = $option;
         }
 
         return $this;

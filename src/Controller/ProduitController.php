@@ -28,19 +28,27 @@ class ProduitController extends AbstractController
     /**
      * @Route("/new", name="produit_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,ProduitRepository $produitRepository): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $options=   $produit->getOptions();
+            $size=$options->count();
+            for ( $i=0;$i<($size/2)-1;$i++)
+            {
+                $produit->addNewOption($options[$i]);
+            }
 
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($produit);
             $entityManager->flush();
 
             return $this->redirectToRoute('produit_index');
+
         }
 
         return $this->render('produit/new.html.twig', [
@@ -52,7 +60,7 @@ class ProduitController extends AbstractController
     /**
      * @Route("/{id}", name="produit_show", methods={"GET"})
      */
-    public function show(Produit $produit): Response
+    public function show(Produit $produit,ProduitRepository $produitRepository): Response
     {
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
@@ -62,15 +70,19 @@ class ProduitController extends AbstractController
     /**
      * @Route("/{id}/edit", name="produit_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Produit $produit): Response
+    public function edit(Request $request, Produit $produit,ProduitRepository $produitRepository): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->render('produit/index.html.twig');
+            return $this->render('produit/index.html.twig', [
+                'produits' => $produitRepository->findAll(),
+            ]);
+
 
         }
 
