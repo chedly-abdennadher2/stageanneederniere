@@ -5,5 +5,5 @@ liip_imagine:
       quality: 75
 
       filters:
-        thumbnail: { size: [100, 100], mode: outbound, allow_upscale: true, scale: {dim:[100, 100]}}
+        thumbnail: { size: [100, 100], mode: outbound }
 

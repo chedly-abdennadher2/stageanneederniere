@@ -1,0 +1,35 @@
+2021-06-29 11:12:25,113 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:12:34,808 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:12:35,237 INFO  - Installing the service with id 'maildevid'
+2021-06-29 11:12:35,436 DEBUG - Completed. Exit code is 0
+2021-06-29 11:14:32,088 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:14:33,579 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:14:34,184 INFO  - Installing the service with id 'maildevid'
+2021-06-29 11:14:34,190 FATAL - Unhandled exception
+System.Exception: Installation failure: Service with id 'maildevid' already exists
+   à winsw.WrapperService.<Run>g__Install|33_0(<>c__DisplayClass33_0& )
+   à winsw.WrapperService.Run(String[] _args, ServiceDescriptor descriptor)
+   à winsw.WrapperService.Main(String[] args)
+2021-06-29 11:15:03,043 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:15:03,972 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:15:04,353 INFO  - Installing the service with id 'maildevid2'
+2021-06-29 11:15:04,421 DEBUG - Completed. Exit code is 0
+2021-06-29 11:15:47,025 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:15:47,437 DEBUG - User requested the status of the process with id 'maildevid2'
+2021-06-29 11:15:47,463 DEBUG - Completed. Exit code is 0
+2021-06-29 11:16:11,722 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:16:12,112 FATAL - Unhandled exception
+System.Exception: Unknown command: maildev-service
+   à winsw.WrapperService.Run(String[] _args, ServiceDescriptor descriptor)
+   à winsw.WrapperService.Main(String[] args)
+2021-06-29 11:16:44,349 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:16:45,284 DEBUG - Starting WinSW in the CLI mode
+2021-06-29 11:16:45,715 INFO  - Starting the service with id 'maildevid2'
+2021-06-29 11:16:45,784 FATAL - WMI Operation failure: ServiceDependencyDeleted
+WMI.WmiException: ServiceDependencyDeleted
+   à WMI.WmiRoot.BaseHandler.CheckError(ManagementBaseObject result)
+   à WMI.WmiRoot.InstanceHandler.Invoke(Object proxy, MethodInfo method, Object[] arguments)
+   à WMI.Win32ServiceProxy.StartService()
+   à winsw.WrapperService.<Run>g__Start|33_2(<>c__DisplayClass33_0& )
+   à winsw.WrapperService.Run(String[] _args, ServiceDescriptor descriptor)
+   à winsw.WrapperService.Main(String[] args)

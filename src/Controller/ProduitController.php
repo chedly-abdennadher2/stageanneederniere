@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Contact\Notification\ContactNotification;
+use App\Entity\Contact;
 use App\Entity\Produit;
+use App\Form\ContactformType;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
 
 /**
  * @Route("/produit")
@@ -58,12 +62,25 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="produit_show", methods={"GET"})
+     * @Route("/{id}", name="produit_show", methods={"GET","POST"})
      */
-    public function show(Produit $produit,ProduitRepository $produitRepository): Response
+    public function show(Produit $produit,ProduitRepository $produitRepository,Request $request,ContactNotification $contactNotification): Response
     {
-        return $this->render('produit/show.html.twig', [
-            'produit' => $produit,
+    $contact =new Contact();
+    $contact->setProd($produit);
+        $form = $this->createForm(ContactformType::class, $contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash("success","votre email a bien été envoyé");
+
+           $contactNotification->notify($contact);
+            return $this->redirectToRoute("produit_show",["id"=>$produit->getId()]);
+        }
+            return $this->render('produit/show.html.twig', [
+            'form' => $form->createView(),
+                'produit'=>$produit
         ]);
     }
 
@@ -79,10 +96,7 @@ class ProduitController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->render('produit/index.html.twig', [
-                'produits' => $produitRepository->findAll(),
-            ]);
-
+           return $this->redirectToRoute('produit_index');
 
         }
 

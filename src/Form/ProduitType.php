@@ -18,13 +18,6 @@ class ProduitType extends AbstractType
     {
         $builder
             ->add('type')
-            ->add('options',EntityType::class,
-            [
-                'class'=>Option::class,
-                'choice_label'=>'name',
-                 'multiple'=>true,
-            ]
-            )
 
             ->add('tags',EntityType::class,
                 [
