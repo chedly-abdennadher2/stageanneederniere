@@ -75,6 +75,7 @@ class ProduitController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->addFlash("success","votre email a bien été envoyé");
 
+
            $contactNotification->notify($contact);
             return $this->redirectToRoute("produit_show",["id"=>$produit->getId()]);
         }
