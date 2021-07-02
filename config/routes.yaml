@@ -13,3 +13,5 @@ customer  :
 Search:
     path: /search
     controller: App\Controller\SearchController:search
+logout:
+    path: /logout

@@ -15,5 +15,8 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "version": "0.0.0"
+    "version": "0.0.0",
+    "dependencies": {
+        "select2": "^4.1.0-rc.0"
+    }
 }
