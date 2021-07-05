@@ -72,4 +72,7 @@ Encore
     //.autoProvidejQuery()
 ;
 
-module.exports = Encore.getWebpackConfig();
+var config = Encore.getWebpackConfig();
+config.externals.jquery="jQuery";
+module.exports = config;
+

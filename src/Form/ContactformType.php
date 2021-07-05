@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use Graficart\RecaptchaBundle\Type\RecaptchaSubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,8 +22,9 @@ class ContactformType extends AbstractType
             ->add('phone',TextType::class)
             ->add('email',EmailType::class)
             ->add('message',TextareaType::class)
-            ->add ("envoyer",SubmitType::class)
+            ->add('recaptcha',RecaptchaSubmitType::class)
 
+            ->add ("envoyer",SubmitType::class)
         ;
     }
 

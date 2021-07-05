@@ -24,6 +24,7 @@ class ProduitController extends AbstractController
      */
     public function index(ProduitRepository $produitRepository): Response
     {
+
         return $this->render('produit/index.html.twig', [
             'produits' => $produitRepository->findAll(),
         ]);
@@ -91,7 +92,11 @@ class ProduitController extends AbstractController
     public function edit(Request $request, Produit $produit,ProduitRepository $produitRepository): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
+        $contact =new Contact();
+        $contact->setProd($produit);
+
         $form->handleRequest($request);
+        $form2 = $this->createForm(ContactformType::class, $contact);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -104,6 +109,7 @@ class ProduitController extends AbstractController
         return $this->render('produit/edit.html.twig', [
             'produit' => $produit,
             'form' => $form->createView(),
+            'form2'=> $form2->createView(),
         ]);
     }
 
