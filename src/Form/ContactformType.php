@@ -22,7 +22,9 @@ class ContactformType extends AbstractType
             ->add('phone',TextType::class)
             ->add('email',EmailType::class)
             ->add('message',TextareaType::class)
-            ->add('recaptcha',RecaptchaSubmitType::class)
+            ->add('recaptcha',RecaptchaSubmitType::class,[
+                "label"=> 'envoyer',
+            ])
 
             ->add ("envoyer",SubmitType::class)
         ;

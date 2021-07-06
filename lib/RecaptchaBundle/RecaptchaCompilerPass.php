@@ -13,7 +13,7 @@ public  function process(ContainerBuilder $container)
 {
 if ($container->hasParameter('twig.form.resources'))
 {
-    $ressources=$container->getParameter('twig.form.resources');
+    $ressources=$container->getParameter('twig.form.resources') ?: [];
     array_unshift($ressources,'@Recaptcha/fields.html.twig');
     $container->setParameter('twig.form.resources',$ressources);
 }

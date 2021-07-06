@@ -1,3 +1,8 @@
 {% block recaptcha_widget %}
+    {% set label =button %}
+    {% set attr= attr| merge({class: 'g-recaptcha','data-sitekey': key,'data-callback':''}) %}
+    {% block submit_widget %}
 
-{% endblock %}
+    {% endblock %}
+    {% endblock %}
+
