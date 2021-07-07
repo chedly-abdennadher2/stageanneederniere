@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 
 namespace Graficart\RecaptchaBundle\DependencyInjection;
@@ -21,9 +21,9 @@ class Configuration implements ConfigurationInterface
    $rootNode =$treeBuilder->root('recaptcha');
    $rootNode->children()
        ->scalarNode('key')->isRequired()->cannotBeEmpty()->end()
-
        ->scalarNode('secret')->cannotBeEmpty()->isRequired()->end()->end();
-    return $treeBuilder;
+
+   return $treeBuilder;
     }
 
 }

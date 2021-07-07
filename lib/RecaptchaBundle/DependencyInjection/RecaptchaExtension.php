@@ -19,7 +19,8 @@ class RecaptchaExtension extends Extension
     {
      $configuration=new Configuration();
       $config=$this->processConfiguration($configuration,$configs);
-      dump ($config);
-      die();
+     $container->setParameter('recaptcha.key',$config['key']);
+        $container->setParameter('recaptcha.secret',$config['secret']);
+
     }
 }
