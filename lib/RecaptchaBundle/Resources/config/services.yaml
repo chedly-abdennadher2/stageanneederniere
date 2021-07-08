@@ -1,0 +1,6 @@
+services:
+  recaptcha.type:
+    class: Graficart\RecaptchaBundle\Type\RecaptchaSubmitType
+    tags: ['form.type']
+    arguments:
+      $key: '6LdgXIIbAAAAACoCJHTxXTvRkTRdFCP8RJAbHEuq'

@@ -1,6 +1,23 @@
 {% block recaptcha_widget %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function {{ id }}RecaptchaSubmit(token) {
+            var element=document.getElementById( '{{ id }}' );
+            while (element.parentElement()!==null)
+            {
+                if(element.tagName==='FORM')
+                {
+                   element.submit();
+                   break;
+                }
+                else
+                {element=element.parentElement();}
+            }
+        }
+    </script>
+
     {% set label =button %}
-    {% set attr= attr| merge({class: 'g-recaptcha','data-sitekey': key,'data-callback':''}) %}
+    {% set attr= attr| merge({class: 'g-recaptcha','data-sitekey': key,'data-callback' : id ~'RecaptchaSubmit'}) %}
     {% block submit_widget %}
 
     {% endblock %}

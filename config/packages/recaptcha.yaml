@@ -1,9 +1,9 @@
 recaptcha:
-  key: '6666'
-  secret: '111'
+  key: '6LdgXIIbAAAAACoCJHTxXTvRkTRdFCP8RJAbHEuq'
+  secret: '6LdgXIIbAAAAAO6lkGh-omGWf6cstpowlHEmnmjB'
 services:
    recaptcha.type:
     class: Graficart\RecaptchaBundle\Type\RecaptchaSubmitType
     tags: ['form.type']
     arguments:
-      $key: '771'
+      $key: '6LdgXIIbAAAAACoCJHTxXTvRkTRdFCP8RJAbHEuq'
