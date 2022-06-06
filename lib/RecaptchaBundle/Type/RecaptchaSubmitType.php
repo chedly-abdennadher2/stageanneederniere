@@ -4,6 +4,7 @@
 namespace Graficart\RecaptchaBundle\Type;
 
 
+use Graficart\RecaptchaBundle\Constraints\Recaptcha;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
@@ -27,6 +28,7 @@ $this->key=$key;
 {
 $resolver->setDefaults(
    [ 'mapped'=>false,
+       'constraints'=>new Recaptcha()
    ]
 );
 }

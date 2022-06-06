@@ -20,7 +20,9 @@
 
     {{ form_start(form) }}
     {% if not form.vars.valid %}
-        erreur n'importe quoi
+        {{ form_errors(form) }}
+        {{ dump(form) }}
+
     {% endif %}
 
    {{ form_rest(form) }}

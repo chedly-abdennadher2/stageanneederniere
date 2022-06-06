@@ -1,14 +1,14 @@
 {% block recaptcha_widget %}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
-        function {{ id }}RecaptchaSubmit(token) {
+        function RecaptchaSubmit(token) {
             var element=document.getElementById( '{{ id }}' );
             while (element.parentElement()!==null)
             {
                 if(element.tagName==='FORM')
                 {
-                   element.submit();
-                   break;
+                    element.submit();
+                    break;
                 }
                 else
                 {element=element.parentElement();}
@@ -16,10 +16,7 @@
         }
     </script>
 
-    {% set label =button %}
-    {% set attr= attr| merge({class: 'g-recaptcha','data-sitekey': key,'data-callback' : id ~'RecaptchaSubmit'}) %}
-    {% block submit_widget %}
+    <div class="g-recaptcha" data-sitekey="6Lf2PIIbAAAAANQClPiqK3Ee9VoSt25Xg4kTG23e" data-callback="RecaptchaSubmit"></div>
 
-    {% endblock %}
-    {% endblock %}
+{% endblock %}
 

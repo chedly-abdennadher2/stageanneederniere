@@ -1,9 +1,9 @@
 recaptcha:
-  key: '6LdgXIIbAAAAACoCJHTxXTvRkTRdFCP8RJAbHEuq'
-  secret: '6LdgXIIbAAAAAO6lkGh-omGWf6cstpowlHEmnmjB'
+  key: '6Lf2PIIbAAAAANQClPiqK3Ee9VoSt25Xg4kTG23e'
+  secret: '6Lf2PIIbAAAAANgawFgM8-ol1NbSHT6krR-EeiPO'
 services:
-   recaptcha.type:
+  recaptcha.type:
     class: Graficart\RecaptchaBundle\Type\RecaptchaSubmitType
     tags: ['form.type']
     arguments:
-      $key: '6LdgXIIbAAAAACoCJHTxXTvRkTRdFCP8RJAbHEuq'
+      $key: '6Lf2PIIbAAAAANQClPiqK3Ee9VoSt25Xg4kTG23e'

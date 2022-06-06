@@ -3,4 +3,13 @@ services:
     class: Graficart\RecaptchaBundle\Type\RecaptchaSubmitType
     tags: ['form.type']
     arguments:
-      $key: '6LdgXIIbAAAAACoCJHTxXTvRkTRdFCP8RJAbHEuq'
+      $key: '6Lf2PIIbAAAAANQClPiqK3Ee9VoSt25Xg4kTG23e'
+  recaptacha.validator:
+     class: Graficart\RecaptchaBundle\Constraints\RecaptchaValidator
+     tags: ['validator.constraint_validator']
+     autowire: true
+  recaptcha.recaptcha:
+    class: ReCaptcha\ReCaptcha
+    arguments:
+      $secret: '%recaptcha.secret%'
+      
